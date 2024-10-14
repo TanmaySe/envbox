@@ -10,7 +10,7 @@ function Fetch() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('http://localhost:3000/fetch', {
+            const response = await fetch('https://envbox-backend.onrender.com/fetch', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json', // Specify the content type

@@ -44,7 +44,7 @@ function Share() {
 
     try {
         // Send a POST request to the /share route
-        const response = await fetch('http://localhost:3000/share', {
+        const response = await fetch('https://envbox-backend.onrender.com/share', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json', // Specify the content type
