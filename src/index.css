@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Custom scrollbar styles for the textarea */
+textarea::-webkit-scrollbar {
+    width: 8px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background-color: #e63946; 
+    border-radius: 4px;
+}
+
+textarea::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Add this in your CSS file */
+.loader {
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    border-left-color: #ffffff; /* Change to your desired color */
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
