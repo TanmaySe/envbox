@@ -3,6 +3,8 @@ import CryptoJS from 'crypto-js';
 
 function Share() {
     const [text, setText] = useState('');
+    const [email, setEmail] = useState('');
+    const [emailSent, setEmailSent] = useState(false);
     const [reads, setReads] = useState(999);
     const [ttl, setTtl] = useState(7);
     const [link, setLink] = useState(null);
@@ -23,6 +25,7 @@ function Share() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
+        setEmailSent(false);
         const keyToEncryptKey = import.meta.env.VITE_MY_SECRET_KEY;
         const secretKey = generateRandomString(12);
         
@@ -36,6 +39,7 @@ function Share() {
             randomNum,
             encryptedText,
             encryptedKey,
+            email,
             ttl,
             reads
         };
@@ -51,6 +55,8 @@ function Share() {
             });
 
             if (!response.ok) {
+                const errorData = await response.json();
+                console.error('Server error:', errorData.msg);
                 throw new Error('Network response was not ok');
             }
 
@@ -58,6 +64,7 @@ function Share() {
                 const data = await response.json();
                 console.log("Data : ", data);
                 setLink(data.link);
+                setEmailSent(true);
             }
         } catch (error) {
             console.error('Error:', error);
@@ -86,6 +93,12 @@ function Share() {
                             </a>
                         </div>
                     )}
+
+                    {emailSent && (
+                        <div className="mt-4 p-4 text-center text-green-400 bg-green-800 border border-green-600 rounded-md">
+                            <p>Email has been sent successfully to {email}!</p>
+                        </div>
+                    )}
                 </div>
 
                 <pre className="px-4 py-3 mt-8 font-mono text-left bg-transparent border rounded border-zinc-600 focus:border-zinc-100/80 focus:ring-0 sm:text-sm text-zinc-100">
@@ -105,6 +118,23 @@ function Share() {
                         />
                     </div>
                 </pre>
+
+
+                <div className="mt-4 w-full">
+                    <label htmlFor="email" className="block text-xs font-medium text-zinc-100">Email</label>
+                    <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="w-full p-2 mt-1 text-base bg-transparent border rounded border-zinc-600 text-zinc-100 placeholder-zinc-500 focus:ring-0 sm:text-sm"
+                        placeholder="Enter your email"
+                        required
+                    />
+                </div>
+
+
                 <div className="flex flex-col items-center justify-center w-full gap-4 mt-4 sm:flex-row">
                     <div className="w-full h-16 px-3 py-2 duration-150 border rounded sm:w-2/5 border-zinc-600 focus-within:border-zinc-100/80 focus-within:ring-0">
                         <label htmlFor="reads" className="block text-xs font-medium text-zinc-100">READS</label>
