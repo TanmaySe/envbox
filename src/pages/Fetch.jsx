@@ -51,7 +51,7 @@ function Fetch() {
     }, [id]);
 
     console.log(readsLeft)
-    if (readsLeft === 0) {
+    if (readsLeft < 0) {
         navigate('/share'); // Redirect if readsLeft is 0
     }
 
