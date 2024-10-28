@@ -189,7 +189,7 @@ function Share() {
                       <span className="font-semibold text-zinc-400">TTL (Time to Live): </span>
                       This is how long your data will be available before it deletes itself.
                       <br />
-                      <span className="text-zinc-500">Example: If set to 60, the data will be deleted 60 seconds after being created.</span>
+                      <span className="text-zinc-500">Example: If set to 60, the data will be deleted 60 minutes after being created.</span>
                     </p>
                   </li>
                   <li>
