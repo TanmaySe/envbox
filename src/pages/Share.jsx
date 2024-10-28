@@ -33,8 +33,8 @@ function Share() {
         const encryptedText = CryptoJS.AES.encrypt(text, secretKey).toString();
         const encryptedKey = CryptoJS.AES.encrypt(secretKey, keyToEncryptKey).toString();
         const randomNum = generateRandomString(8);
-        const finalReads = reads === 0 ? 30 : reads;
-        const finalTtl = ttl === 0 ? 30 : ttl;
+        const finalReads = reads <= 0 ? 30 : reads;
+        const finalTtl = ttl <= 0 ? 30 : ttl;
         // Prepare the data to send
         const data = {
             randomNum,
